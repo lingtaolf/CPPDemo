@@ -87,23 +87,26 @@ int main(int argc, char* argv[]) {
     int s;
     std::cout<<"Enter the number to search: ";
     std::cin>>s;
+    int search_value = s;
 
     std::list<uint> l_s;
    
     //6  from 011->110 reverse
     while (s != 0)
     {
-        l_s.emplace_front(n % 2);
+        l_s.emplace_front(s % 2);
         s = s >> 1;
     }
 
     int st = l_s.size();
-    u_int8_t binary_arr[st];
+    int binary_arr[st];
 
     int ix = 0;
-    for (int n : l_s)
+    for (int x : l_s)
     {
-        binary_arr[0] = n;
+        std::cout<<"x is "<<x<<std::endl;
+        binary_arr[ix] = x;
+        ix++;
     }
 
     for (int i = 0; i < st; i++)
@@ -131,7 +134,7 @@ int main(int argc, char* argv[]) {
 
     for (int slice_index = slice_number; slice_index > 0; slice_index--)
     {
-        std::cout<<"Bit slice number is "<<slice_index<<std::endl;
+        std::cout<<"Bit slice number is "<<slice_index-1<<std::endl;
         roaring_bitmap_t* b_i = &(rbs.at(slice_index).roaring);
         if (!(st < slice_index) && binary_arr[slice_index - 1] == 1)
         {
@@ -153,13 +156,18 @@ int main(int argc, char* argv[]) {
 
     }
 
+    std::cout<<"The row equals "<<search_value<<" is "<<std::endl;
     roaring_bitmap_printf(b_eq);
     std::cout<<std::endl;
+    std::cout<<"The row greate than "<<search_value<<" is "<<std::endl;
     roaring_bitmap_printf(b_gt);
     std::cout<<std::endl;
+    std::cout<<"The row less than "<<search_value<<" is "<<std::endl;
     roaring_bitmap_printf(b_lt);
     std::cout<<std::endl;
-
+    
+    roaring_bitmap_t * b_le = roaring_bitmap_or(b_eq, b_lt);
+    roaring_bitmap_t * b_ge = roaring_bitmap_or(b_eq, b_gt);
 
     return 0;
 }
