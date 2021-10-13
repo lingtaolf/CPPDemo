@@ -1,0 +1,9 @@
+[submodule "libcxx"]
+	path = libcxx
+	url = git@github.com:llvm-mirror/libcxx.git
+[submodule "CRoaring"]
+	path = CRoaring
+	url = git@github.com:RoaringBitmap/CRoaring.git
+[submodule "contrib/CRoaring"]
+	path = contrib/CRoaring
+	url = git@github.com:RoaringBitmap/CRoaring.git
