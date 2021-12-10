@@ -8,19 +8,6 @@ using uint = unsigned int;
 
 int main(int argc, char* argv[]) {
 
-    roaring_bitmap_t * test_rb = roaring_bitmap_create();
-    roaring_bitmap_t * helper_rb = roaring_bitmap_create();
-    roaring_bitmap_add(test_rb, 2);
-    roaring_bitmap_add(test_rb, 3);
-    roaring_bitmap_add(helper_rb, 0);
-    roaring_bitmap_add(helper_rb, 1);
-    roaring_bitmap_add(helper_rb, 2);
-    roaring_bitmap_add(helper_rb, 3);
-    roaring_bitmap_printf(test_rb);
-    std::cout<<std::endl;
-    roaring_bitmap_printf(roaring_bitmap_xor(test_rb, helper_rb));
-    std::cout<<std::endl;
-
     std::vector<Roaring> rbs;
     //Bnn
     rbs.emplace_back(Roaring());
